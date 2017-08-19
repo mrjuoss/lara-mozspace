@@ -152,6 +152,7 @@ return [
 
             'menu_file'     => 'layouts/menu.blade.php',
         ],
+        'add_on' => [ 'menu' => [ 'enabled' => true ] ] ,
     ],
 
     /*
