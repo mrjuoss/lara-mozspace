@@ -49,7 +49,7 @@ Route::group(['prefix' => 'product'], function(){
       'harga'       => 100000
     ]);
     */
-    
+
     $data = new App\Product;
     $data->nama_barang = 'Baju';
     $data->jumlah      = 5;
@@ -57,6 +57,25 @@ Route::group(['prefix' => 'product'], function(){
     $data->harga       = 200000;
     $data->save();
 
+  });
+
+  Route::get('/show/{id}', function ($id){
+    $data = App\Product::findOrFail($id);
+    dd($data);
+  });
+
+  Route::get('/update/{id}', function($id){
+    $product = App\Product::findOrFail($id);
+    echo "Before update : ".$product->nama_barang. "<br>";
+    $product->nama_barang = "Sarung";
+    $product->save();
+    $data = App\Product::find($id);
+    echo "After update : ".$data->nama_barang;
+  });
+
+  Route::get('/search/{parameter}/{value}', function ($parameter, $value){
+    $data = App\Product::where([$parameter == $value])->get();
+    dd($data);
   });
 
   Route::group(['prefix' => 'sepatu'], function(){
