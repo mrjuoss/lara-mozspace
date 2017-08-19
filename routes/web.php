@@ -40,6 +40,25 @@ Route::group(['prefix' => 'product'], function(){
     return "Tampilkan select";
   });
 
+  Route::get('/add', function(){
+    /* Entry Single Data dengan Create dg Mass Assignmen
+    App\Product::create([
+      'nama_barang' => 'Sendal',
+      'jumlah'      => 30,
+      'satuan'      => 'pasang',
+      'harga'       => 100000
+    ]);
+    */
+    
+    $data = new App\Product;
+    $data->nama_barang = 'Baju';
+    $data->jumlah      = 5;
+    $data->satuan      = 'buah';
+    $data->harga       = 200000;
+    $data->save();
+
+  });
+
   Route::group(['prefix' => 'sepatu'], function(){
     Route::get('/', function(){
       return "Tampilkan semua data sepatu";
