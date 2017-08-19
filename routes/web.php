@@ -73,6 +73,12 @@ Route::group(['prefix' => 'product'], function(){
     echo "After update : ".$data->nama_barang;
   });
 
+  Route::get('/delete/{id}', function($id){
+    $product = App\Product::findOrFail($id);
+    $product->delete();
+    echo "Data dengan id ".$id." telah dihapus";
+  });
+
   Route::get('/search/{parameter}/{value}', function ($parameter, $value){
     $data = App\Product::where([$parameter == $value])->get();
     dd($data);
